@@ -1,8 +1,11 @@
 class Block{
-	constructor(code, name, isHard){
+	constructor(code, name, x, y, options){
+		this.size = 32;
+
+		options = options || {};
 		this.code = code;
 		this.name = name;
-		this.isHard = isHard;
+		this.body = Matter.Bodies.rectangle(x, y, this.size, this.size, options);
 	}
 
 	isHard(){
@@ -25,7 +28,15 @@ class Block{
 		return this.code;
 	}
 
-	setCode(){
+	setCode(code){
 		this.code = code;
+	}
+
+	render(){
+		push();
+		translate(this.body.position.x, this.body.position.y));
+		rotate(this.body.angle);
+		pop();
+
 	}
 }
