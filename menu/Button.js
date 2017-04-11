@@ -1,6 +1,12 @@
 class MenuButton{
-	constructor(type, x, y, tx, ty){
-		this.type = type;
+	constructor(type, chap, level, x, y, tx, ty){
+		this.type = type;		//0: new game, 1: level selection, 2: level button
+
+		this.chapter = chap;
+		this.level = level;
+		//(-1,-1)=(-21): start menu
+		//(0,0)=(0): level selection menu
+
 		this.x = x;
 		this.y = y;
 		this.tailleX = tx;
@@ -9,16 +15,16 @@ class MenuButton{
 
 	mousePressed(mouseX, mouseY){
 		if (mouseX>this.x && mouseX<(this.x+this.tailleX) && mouseY>this.y && mouseY<(this.y+this.tailleY)) {
-			this.select();
+			return (10*(this.chapter-1)+this.level);
 		}
 	}
 
 	select(){
 		if (this.type=="otherMenu"){
-			return 1;
+			return ;
 		}
 		else if (this.type=="levelButton"){
-			return 2;
+			return ;
 		}
 		else {
 
@@ -38,8 +44,7 @@ class MenuButtonLevel extends MenuButton{
 			typeMenu = "changingMenu"
 		}
 		else if (this.type=="levelButton"){
-			print(this.chapter);
-			print(this.level);
+			return (10*(this.chapter-1)+this.level)
 		}
 		else {
 			print("New Game");

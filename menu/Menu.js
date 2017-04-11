@@ -1,22 +1,79 @@
 class Menu{
 	constructor(type){
 		this.menuType = type;
+		this.whichMenu = 0;
+		this.nChapter = 2;
+		this.nLevel = 10*this.nChapter;
+		this.levelArray = new Array();
+
+		//levelArray form: [(0,),...,(0,9),(1,0),...(1,9)]
+		//Access : levelArray[10*(chapter-1)+(level)]
+		for (var i=0; i<this.nLevel; i++){
+			this.levelArray.push(new MenuButtonLevel(1, 20+i*200, 50+j*110, 150, 20, i, j));
+		}
+
+		this.bNewGame = new MenuButton("newGameButton", 300, 200, 200, 50);
+		this.bSelectLevel = new MenuButton("otherMenu", 300, 300, 200, 50);
 	}
 
 	load(){
-		this.menuRender = loadImage("Resources/");
+		this.menuRender0 = loadImage("Resources/");
+		this.menuRender1 = loadImage("Resources/");
 	}
 
 	render(){
 		clear();
-		image(this.menuRender, 0, 0);
+		switch (this.whichMenu) {
+			case 0:
+				image(this.menuRender0, 0, 0);
+				break;
+			case 1:
+				image(this.menuRender1, 0, 0);
+				break;
+			case 2:
+				break;
+		}
 	}
 
-	getType(){
-		return this.menuType;
+	update(){
+		switch (this.whichMenu) {
+			case 0:
+				break;
+			case 1:
+				break;
+			case 2:
+				break;
+		}
 	}
+
+	mousePressed(x, y){
+		switch (this.whichMenu) {
+			case 0:
+				this.bNewGame.mousePressed(x, y);
+				if (this.select==-21){
+					//New Game
+				}
+				this.select = this.bSelectALevel.mousePressed(x, y);
+				if (this.select==0){
+					//Go to level selection
+				}
+				break;
+			case 1:
+				for (var i=0; i<this.nLevel; i++){
+					this.buttonArray[i].mousePressed(x, y);
+				}
+				break;
+			case 2:
+				break;
+		}
+	}
+
+	//getType(){
+	//	return this.menuType;
+	//}
 }
 
+/*
 class MainMenu extends Menu{
 	constructor(type){
 		super(type);
@@ -56,7 +113,7 @@ class LevelMenu extends Menu{
 		}
 	}
 }
-
+*/
 
 
 
