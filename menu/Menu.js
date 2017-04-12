@@ -8,21 +8,21 @@ class Menu{
 
 		//levelArray form: [(0,),...,(0,9),(1,0),...(1,9)]
 		//Access : levelArray[10*(chapter-1)+(level)]
+		//Reverse:   i:   chap=(i/10)+1  level=(i%10)
 		for (var i=0; i<this.nLevel; i++){
-			this.levelArray.push(new MenuButtonLevel(1, 20+i*200, 50+j*110, 150, 20, i, j));
+			this.levelArray.push(new MenuButton(2, (Math.floor(i/10))+1,  i%10, 20+i*200, 50+i*110, 150, 20));
 		}
 
-		this.bNewGame = new MenuButton("newGameButton", 300, 200, 200, 50);
-		this.bSelectLevel = new MenuButton("otherMenu", 300, 300, 200, 50);
+		this.bNewGame = new MenuButton(0, -1, -1, 300, 200, 200, 50);
+		this.bSelectLevel = new MenuButton(1, 0, 0, 300, 300, 200, 50);
 	}
 
 	load(){
-		this.menuRender0 = loadImage("Resources/");
+		this.menuRender0 = loadImage("Resources/textures/menu/main_menu.png");
 		this.menuRender1 = loadImage("Resources/");
 	}
 
 	render(){
-		clear();
 		switch (this.whichMenu) {
 			case 0:
 				image(this.menuRender0, 0, 0);
@@ -49,18 +49,27 @@ class Menu{
 	mousePressed(x, y){
 		switch (this.whichMenu) {
 			case 0:
-				this.bNewGame.mousePressed(x, y);
+				this.select = this.bNewGame.mousePressed(x, y);
 				if (this.select==-21){
 					//New Game
+					console.log("New Game");
 				}
 				this.select = this.bSelectALevel.mousePressed(x, y);
 				if (this.select==0){
 					//Go to level selection
+					this.whichMenu = 1;
 				}
 				break;
 			case 1:
 				for (var i=0; i<this.nLevel; i++){
-					this.buttonArray[i].mousePressed(x, y);
+					this.select = this.buttonArray[i].mousePressed(x, y);
+					if (this.select!=-100){
+						//Go to a level
+						//chapter= (Math.floor(this.select/10))+1
+						//level= this.select%10
+						console.log((Math.floor(this.select/10))+1);
+						console.log(this.select%10);
+					}
 				}
 				break;
 			case 2:

@@ -1,17 +1,17 @@
 var timer;
 var run = true;
-var music = new Music("resources/sounds/musics/", 3);
-var sound = new Sound("resources/chapters/");
-var menu = new Menu();
-var textureLoader = new TextureLoader();
-var typeMenu = "mainMenu";
+//var music = new Music("resources/sounds/musics", 3);
+//var sound = new Sound("resources/chapters/");
+//var menu = new Menu();
+//var textureLoader = new TextureLoader();
 
-var game;
+var game = new Game();
 
 function preload(){
-	music.load();
-	sound.load();
-	textureLoader.load();
+	game.load();
+	//music.load();
+	//sound.load();
+	//textureLoader.load();
 }
 
 function setup() {
@@ -20,19 +20,18 @@ function setup() {
 	timer = new Timer();
 	timer.start();
 	timer.setTimeMax(180000);
-	game = new Game();
 }
 
 function draw() {
 	game.update();
 	clear();
-	game.render(textureLoader);
+	game.render(); //textureLoader
 }
 
 function mousePressed() {
 	run = !run;
 	run ? timer.start() : timer.stop();
-	menu.mouse(mouseX, mouseY);
+
 }
 
 function keyPressed() {
