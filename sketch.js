@@ -31,7 +31,7 @@ function draw() {
 function mousePressed() {
 	run = !run;
 	run ? timer.start() : timer.stop();
-
+	game.mousePressed(mouseX, mouseY);
 }
 
 function keyPressed() {

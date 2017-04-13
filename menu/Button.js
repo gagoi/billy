@@ -5,12 +5,17 @@ class MenuButton{
 		this.chapter = chap;
 		this.level = level;
 		//(-1,-1)=(-21): start menu
-		//(0,0)=(0): level selection menu
+		//(0,0)=(-10): level selection menu
 
 		this.x = x;
 		this.y = y;
 		this.tailleX = tx;
 		this.tailleY = ty;
+	}
+
+	render(){
+		fill(255);
+		rect(this.x, this.y, this.tailleX, this.tailleY);
 	}
 
 	mousePressed(mouseX, mouseY){

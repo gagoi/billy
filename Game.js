@@ -5,24 +5,25 @@ class Game {
 
 		this.menu = new Menu();
 
-		this.engine = Matter.Engine.create();
+		//this.engine = Matter.Engine.create();
 
 		this.entities = [];
 	}
 
 	load(){
 		this.menu.load();
-		this.levelMenu.load();
 		this.music.load();
 		this.soundEffect.load();
 	}
 
 	update(){
-		Matter.Engine.run(this.engine);
+		//Matter.Engine.run(this.engine);
+		this.music.volume(0.1);
 		this.music.play();
 	}
 
 	render(){
+		this.menu.render();
 		for( var entity in this.entities) {
 			entity.render();
 		}
