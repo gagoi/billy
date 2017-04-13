@@ -5,7 +5,7 @@ class Game {
 
 		this.menu = new Menu();
 
-		//this.engine = Matter.Engine.create();
+		this.engine = Matter.Engine.create();
 
 		this.entities = [];
 	}
@@ -17,7 +17,7 @@ class Game {
 	}
 
 	update(){
-		//Matter.Engine.run(this.engine);
+		Matter.Engine.run(this.engine);
 		this.music.volume(0.1);
 		this.music.play();
 	}
