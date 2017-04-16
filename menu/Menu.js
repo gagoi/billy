@@ -14,6 +14,7 @@ class Menu{
 
 		this.bNewGame = new MenuButton(0, -1, -1, 312, 294, 400, 100);
 		this.bSelectLevel = new MenuButton(1, 0, 0, 312, 409, 400, 100);
+		this.bBack = new MenuButton(1, -2, -2, 20, 450, 40, 20);
 	}
 
 	load(){
@@ -33,6 +34,7 @@ class Menu{
 				for (var i=0; i<this.nLevel; i++){
 					this.levelArray[i].render();
 				}
+				this.bBack.render();
 				break;
 			case 2:
 				break;
@@ -75,6 +77,11 @@ class Menu{
 						console.log("chapter: ",(Math.floor(this.select/10))+1);
 						console.log("Level: ", this.select%10);
 					}
+				}
+				//Back to main menu
+				this.select = this.bBack.mousePressed(x, y);
+				if (this.select==-32){
+					this.whichMenu = 0;
 				}
 				break;
 			case 2:
