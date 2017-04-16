@@ -8,7 +8,9 @@ class Game {
 		this.engine = Matter.Engine.create();
 
 		this.entities = [];
-	}
+
+        this.level = new Level(1, 1);
+    }
 
 	load(){
 		this.menu.load();

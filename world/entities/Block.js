@@ -34,7 +34,7 @@ class Block{
 
 	render(){
 		push();
-		translate(this.body.position.x, this.body.position.y));
+		translate(this.body.position.x, this.body.position.y);
 		rotate(this.body.angle);
 		pop();
 
