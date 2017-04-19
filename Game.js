@@ -10,6 +10,8 @@ class Game {
 		this.entities = [];
 
         this.level = new Level(1, 1);
+
+		this.whatDisplay = -1;
     }
 
 	load(){
@@ -22,12 +24,19 @@ class Game {
 		Matter.Engine.run(this.engine);
 		this.music.volume(0.1);
 		this.music.play();
+		this.whatDisplay = this.menu.getLevel();
 	}
 
 	render(){
-		this.menu.render();
 		for( var entity in this.entities) {
 			entity.render();
+		}
+		if (this.whatDisplay==-1){
+			this.menu.render();
+		}
+		else {
+			//this.level.render();
+			console.log("Affichage du level en cours");
 		}
 	}
 

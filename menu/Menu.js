@@ -1,5 +1,6 @@
 class Menu{
 	constructor(){
+		this.goToLevel = -1;
 		this.whichMenu = 0;
 		this.nChapter = 3;
 		this.nLevel = 10*this.nChapter;
@@ -14,12 +15,12 @@ class Menu{
 
 		this.bNewGame = new MenuButton(0, -1, -1, 312, 294, 400, 100);
 		this.bSelectLevel = new MenuButton(1, 0, 0, 312, 409, 400, 100);
-		this.bBack = new MenuButton(1, -2, -2, 20, 450, 40, 20);
+		this.bBack = new MenuButton(1, -2, -2, 51, 438, 247, 78);
 	}
 
 	load(){
 		this.menuRender0 = loadImage("Resources/textures/menu/main_menu.png");
-		this.menuRender1 = loadImage("Resources/textures/menu/level_menu_test.png");
+		this.menuRender1 = loadImage("Resources/textures/menu/level_menu.png");
 	}
 
 	render(){
@@ -59,6 +60,7 @@ class Menu{
 				if (this.select==-21){
 					//New Game
 					console.log("New Game");
+					this.goToLevel = 0;
 				}
 				this.select = this.bSelectLevel.mousePressed(x, y);
 				if (this.select==-10){
@@ -76,17 +78,21 @@ class Menu{
 						//level= this.select%10
 						console.log("chapter: ",(Math.floor(this.select/10))+1);
 						console.log("Level: ", this.select%10);
+						this.goToLevel = this.select;
 					}
 				}
-				//Back to main menu
 				this.select = this.bBack.mousePressed(x, y);
 				if (this.select==-32){
+					//Back to main menu
+					console.log("Back ton main menu");
 					this.whichMenu = 0;
 				}
 				break;
-			case 2:
-				break;
 		}
+	}
+
+	getLevel() {
+		return this.goToLevel;
 	}
 }
 

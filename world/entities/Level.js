@@ -32,7 +32,7 @@ class Level {
         }
     }
 
-    getBlock(int x, int y){
+    getBlock(x, y){
         return Block.getBlock(this.map[x][y]);
     }
 

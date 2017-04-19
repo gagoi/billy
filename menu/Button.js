@@ -14,7 +14,8 @@ class MenuButton{
 	}
 
 	render(){
-		fill(255);
+		noFill();
+		noStroke();
 		rect(this.x, this.y, this.tailleX, this.tailleY);
 	}
 
